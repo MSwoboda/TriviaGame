@@ -7,10 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
-    <title>Control Systems - Trivia Game</title>
+    <title>Beer Trivia</title>
 </head>
 
 <footer class="footer">
@@ -18,15 +19,16 @@
     <div class="progress">
         <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
-
 </footer>
 
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
-        <a class="navbar-brand" href="#">Control Systems Trivia </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+
+        <a class="navbar-brand" href="#">Beer Trivia </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse " id="navbarNav">
             <ul class="navbar-nav  ">
@@ -41,65 +43,147 @@
                 </li>
 
             </ul>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                </div>
+            </div>
         </div>
+
+
     </nav>
 
 
-    <div class="container mt-5 text-centered">
+    <div class="container mt-3 text-centered text-light">
+        <div class="row">
 
+
+        </div>
         <div class="col-xs-12">
-            <div class="row">
-                <h2 id="mainHeader" class="text-left">> Start Game (Y/N)!</h2>
+           
+            <div class="row flex-nowrap justify-content-center">
+
+                <div class="col-xs-10">
+
+                    <div class="d-flex mt-5 mr-6 flex-nowrap justify-content-center " data-toggle="tooltip"
+                        data-placement="left" title="Tooltip on left">
+                        <div class=" order-1 p-2 text-centered ">
+                            <a href="#" class="btn btn-sq-lg ">
+
+
+                                <img class="hero pic " src="assets/images/heroes/coaster_hero_1.png" alt="Holy Spirit">
+
+
+                                <br>
+                                <h5 class="text-center text-light font-large-resp mt-3">Holy Spirits</h5>
+
+                            </a>
+
+                        </div>
+
+                        <div class="order-2 p-2">
+                            <a href="#" class="btn btn-sq-lg">
+                                <img class="hero" src="assets/images/heroes/coaster_hero_2.png" alt="Flower">
+                                <br>
+                                <h5 class="text-center text-light font-large-resp mt-3">The Pretzel</h5>
+                            </a>
+
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="d-flex mt-5 mr-6 flex-nowrap justify-content-center">
+
+                        <div class="order-1 p-2">
+                            <a href="#" class="btn btn-sq-lg">
+                                <img class="hero" src="assets/images/heroes/coaster_hero_3.png" alt="Flower">
+                                <br>
+                                <h5 class="text-center text-light font-large-resp mt-3">Glass Pinecone</h5>
+
+                            </a>
+
+
+                        </div>
+
+                        <div class="order-2 p-2">
+                            <a href="#" class="btn btn-sq-lg">
+                                <img class="hero" src="assets/images/heroes/coaster_hero_4.png" alt="Discarded Prototype">
+                                <br>
+                                <h5 class="text-center text-light font-large-resp mt-3">Discarded Prototype</h5>
+
+
+                            </a>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-xs-2 ml-5 mt-5">
+                <br>
+                        <h2 id="mainHeader " class=" font-hd-resp">> Select Your Coaster</h2>
+                        <br>
+                        <h2 id="mainHeader " class=" font-hd-resp">----------------</h2>
+                        
+                        <h3 class=" font-hd-resp">Name: Holy Spirits </h3>
+                        <br>
+                        <h3 class=" font-hd-resp">Type: Deity </h3>
+                        <br>
+                        <h3 class=" font-hd-resp">Trait(s): Scores and Speed increase on correct answers </h3>
+
+                 
+                </div>
+
+
             </div>
-            <div class="row">
-                <h2 class="text-left">> <span id="log"></span> <span> _</span></h2>
-            </div>
+
+
+
         </div>
-        <div class="container align-content-center">
-
-            <div class="d-flex flex-nowrap justify-content-center">
-
-                <div class="order-2 p-2">
-                    <a href="#" class="btn btn-sq-lg btn-warning">
-                        <i class="fa fa-user fa-5x"></i><br/> Demo Warning <br>Button
-                    </a>
-                </div>
-                <div class="order-1 p-2">
-                    <a href="#" class="btn btn-sq-lg btn-warning">
-                        <i class="fa fa-user fa-5x"></i><br/> Demo Warning <br>Button
-                    </a>
-                </div>
-            </div>
-            <div class="d-flex flex-nowrap justify-content-center">
-
-                <div class="order-2 p-2 ">
-                    <a href="#" class="btn btn-sq-lg btn-warning">
-                        <i class="fa fa-user fa-5x"></i><br/> Demo Warning <br>Button
-                    </a>
-                </div>
-                <div class="order-1 p-2">
-                    <a href="#" class="btn btn-sq-lg btn-warning">
-                        <i class="fa fa-user fa-5x"></i><br/> Demo Warning <br>Button
-                    </a>
-                </div>
-            </div>
 
 
 
-
-        </div>
-    </div>
-    </div>
 
 
     </div>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 
     <script src="assets/javascript/app.js"></script>
+
+
+    <br>
+    <h3 class=" font-hd-resp">Name: Glass Pinecone </h3>
+    <br>
+    <h3 class=" font-hd-resp">Type: 'Herb' </h3>
+    <br>
+    <h3 class=" font-hd-resp">Trait(s): 3x Points, Fragile  </h3>
+
+    
+    <br>
+    <h3 class=" font-hd-resp">Name: Discarded Prototype </h3>
+    <br>
+    <h3 class=" font-hd-resp">Type: Trash </h3>
+    <br>
+    <h3 class=" font-hd-resp">Trait(s): 2x Points, 2x Speed  </h3>
+
+    <br>
+    <h3 class=" font-hd-resp">Name: The Pretzel </h3>
+    <br>
+    <h3 class=" font-hd-resp">Type: Sourdough  </h3>
+    <br>
+
+    <h3 class=" font-hd-resp">Trait(s): Slightly Stale </h3>
 
 </body>
 
