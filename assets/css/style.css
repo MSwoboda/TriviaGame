@@ -10,17 +10,17 @@ body {
 }
 
 .font-large-resp {
-    font-size: 2vh;
+    font-size: 2vmin;
 }
 
 .font-hd-resp {
-    font-size: 2.5vh;
+    font-size: 2.5vmin;
 }
 
 .hero{
 
-    width: 25vh;
-    height: 25vh;
+    width: 25vmin;
+    height: 25vmin;
 }
 
 .footer {
@@ -57,7 +57,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
+    background-color: #2196F3;
     -webkit-transition: .4s;
     transition: .4s;
   }
@@ -75,11 +75,11 @@ body {
   }
   
   input:checked + .slider {
-    background-color: #2196F3;
+    background-color: #ccc;
   }
   
   input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
+    box-shadow: 0 0 1px #ccc;
   }
   
   input:checked + .slider:before {
