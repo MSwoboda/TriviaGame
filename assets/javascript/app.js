@@ -38,7 +38,9 @@ const coaster = {
   name: ["Glass Pinecone", "Discarded Prototype", "The Pretzel", "Holy Spirits"],
   type: ["'Herb'", "Trash", "Sourdough", "Deity"],
   traits: [["3x Points, Fragile 🍺"], ["2x Points, 2x Speed"], ["0.5x Points, 0.5x Speed"], ["Scores⬆ and Speed⬆ on correct answers"]]
-
+  ntrait: [speed:[],
+           points:[],
+    ,,,]
 }
 
 
@@ -59,9 +61,11 @@ let game = {
 var timerSet = false;
 var gameTimer;
 var seashanty2 = document.getElementById("myAudio");
-var timerVal = 100;
+var timerVal = 120;
 //$("#coasterSelection").hide();
+
 $("#questionSelection").hide();
+$("#scoreCard").hide();
 
 
 function newGame(selector) {
@@ -81,25 +85,54 @@ function newGame(selector) {
   game.musicToggle ? seashanty2.play() : seashanty2.pause();
 
   $("#coasterSelection").hide();
+  $("#scoreCard").hide();
   $("#questionSelection").show();
+
   newQuestion()
 
 }
 
+
 function evalAnswer(selector) {
-  game.correctSelection == selector ? game.score++ : game.score
+ // game.correctSelection == selector ? game.score++ : game.score;
+
+clearInterval(gameTimer);
+timerSet = false;
+
+
+  if (game.correctSelection === selector) {
+
+    console.log("#d" +(game.correctSelection+1) );
+    
+      $("#d" +(game.correctSelection+1) ).addClass("border border-3 border-success rounded");
+      game.score++
+    } else {
+      $("#d" + (selector+1)).addClass("border border-3 border-danger rounded");
+      $("#d" + (game.correctSelection+1)).addClass("border border-3 border-success rounded");
+    }
+    if (game.numQuestion >= 14) {
+      endGame();
+    } else{
+      setTimeout(function(){newQuestion();
+        $(".border").removeClass("border border-3 border-danger border-success  border-danger rounded");
+        },1000)
+    }
 }
 
 function newQuestion() {
-
   timerVal = 120;
   $("#progress-bar").attr("style","width: 120%;")
+
+  if (!timerSet) {
+  gameTimer = setInterval(function(){ progressBar() }, 10);
+  timerSet = true;
+}
 
   var ansOrder = shuffle(Array.from(Array(4).keys()));
 
   game.correctSelection =  ansOrder.indexOf(0);
 
- 
+ console.log("correct answer: "+game.correctSelection)
 
   $("#answer1").text(answers[game.orderQuestion[game.numQuestion]][ansOrder[0]]);
   $("#answer2").text(answers[game.orderQuestion[game.numQuestion]][ansOrder[1]]);
@@ -109,12 +142,9 @@ function newQuestion() {
   $("#question").text(question[game.orderQuestion[game.numQuestion++]]);
 
 
-
-if (!timerSet) {
-  gameTimer = setInterval(function(){ progressBar() }, 100);
-  timerSet = true;
-}
-
+  if (game.numQuestion >= 14) {
+    endGame();
+  }
 }
 
 function progressBar(params) {
@@ -136,6 +166,16 @@ function updateCoasterDisplay(selector) {
   $("#coasterName").text(coaster.name[selector]);
   $("#coasterType").text(coaster.type[selector]);
   $("#coasterTrait").text(coaster.traits[selector]);
+
+}
+
+function endGame(params) {
+
+  clearInterval(gameTimer);
+  timerSet = false;
+  $("#coasterSelection").hide();
+  $("#questionSelection").hide();
+  $("#scoreCard").show();
 
 }
 
@@ -183,25 +223,47 @@ $("#b4").on("click", function (event) {
 
 //On click answer
 $("#d1").on("click", function (event) {
-  evalAnswer();
-  newQuestion();
+  evalAnswer(0);
 })
 
 $("#d2").on("click", function (event) {
-  evalAnswer();
-  newQuestion();
+  evalAnswer(1);
 })
 
 $("#d3").on("click", function (event) {
-  evalAnswer();
-  newQuestion();
+  evalAnswer(2);
 })
 
 $("#d4").on("click", function (event) {
-  evalAnswer();
-  newQuestion();
+  evalAnswer(3);
 })
 
+
+$("#newgame").on("click", function (event) {
+   game = {
+    score: 0,
+    correctAnswers: 0,
+    correctSelection: 0,
+    wins: 0,
+    numQuestion: 0,
+    orderQuestion: [],
+    coaster: {},
+    musicToggle: false,
+    timePerQuestion: 30,
+    playbackRate: 1
+  }
+  
+  var timerSet = false;
+  var gameTimer;
+  var seashanty2 = document.getElementById("myAudio");
+  var timerVal = 120;
+  //$("#coasterSelection").hide();
+  
+  $("#questionSelection").hide();
+  $("#scoreCard").hide();
+  $("#coasterSelection").show();
+
+})
 
 function shuffle(arra1) {
   var ctr = arra1.length, temp, index;

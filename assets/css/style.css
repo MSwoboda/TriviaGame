@@ -128,10 +128,7 @@ body {
 }
 
 
-.progress .bar {
-  -webkit-transition: none;
-  -moz-transition: none;
-  -ms-transition: none;
-  -o-transition: none;
-  transition: none;
-}​
+
+.border-3 {
+  border-width:4px !important;
+}
