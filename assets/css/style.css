@@ -9,6 +9,8 @@ body {
 
 }
 
+
+
 .font-large-resp {
     font-size: 2vmin;
 }
@@ -17,7 +19,7 @@ body {
     font-size: 2.5vmin;
 }
 
-.hero{
+.tile{
 
     width: 25vmin;
     height: 25vmin;
@@ -32,7 +34,9 @@ body {
 .btn-sq-lg {
     width: 30vh !important;
     height: 30vh !important;
+  
 }
+
 
 /* The switch - the box around the slider */
 .switch {
@@ -57,7 +61,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #2196F3;
+    background-color: #ccc;
     -webkit-transition: .4s;
     transition: .4s;
   }
@@ -75,11 +79,11 @@ body {
   }
   
   input:checked + .slider {
-    background-color: #ccc;
+    background-color: #2196F3;
   }
   
   input:focus + .slider {
-    box-shadow: 0 0 1px #ccc;
+    box-shadow: 0 0 1px #2196F3;
   }
   
   input:checked + .slider:before {
@@ -106,3 +110,28 @@ body {
     50%{     color: #fff;    }
 
 }
+
+/* Centered text */
+.anscenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+
+.container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+
+.progress .bar {
+  -webkit-transition: none;
+  -moz-transition: none;
+  -ms-transition: none;
+  -o-transition: none;
+  transition: none;
+}​
