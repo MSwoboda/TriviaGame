@@ -37,10 +37,10 @@ const answers = [["Zymurgy", "Zorology", "Zoophagy", "Zumology"],
 const coaster = {
   name: ["Glass Pinecone", "Discarded Prototype", "The Pretzel", "Holy Spirits"],
   type: ["'Herb'", "Trash", "Sourdough", "Deity"],
-  traits: [["3x Points, Fragile 🍺"], ["2x Points, 2x Speed"], ["0.5x Points, 0.5x Speed"], ["Scores⬆ and Speed⬆ on correct answers"]]
-  ntrait: [speed:[],
-           points:[],
-    ,,,]
+  traits: ["3x Points, Fragile 🍺", "2x Points, 2x Speed", "0.5x Points, 0.5x Speed", "Scores⬆ and Speed⬆ on correct answers"],
+  multiplier: [3,2,0.5,1],
+  speed:[1,2,0.5,1]
+           
 }
 
 
@@ -52,7 +52,12 @@ let game = {
   wins: 0,
   numQuestion: 0,
   orderQuestion: [],
-  coaster: {},
+  multiplier: 0 ,
+  speed: 0,
+  coasterName:"",
+  coasterType:"",
+  coasterTraits:"",
+
   musicToggle: false,
   timePerQuestion: 30,
   playbackRate: 1
@@ -81,6 +86,10 @@ function newGame(selector) {
 
   game.orderQuestion = order
   game.numQuestion = 0;
+  game.multiplier = coaster.speed[selector];
+  game.speed = coaster.speed[selector];
+  game.coasterName = coaster.name[0];
+  game.coasterType = coaster.type[0];
 
   game.musicToggle ? seashanty2.play() : seashanty2.pause();
 
@@ -99,32 +108,57 @@ function evalAnswer(selector) {
 clearInterval(gameTimer);
 timerSet = false;
 
-
   if (game.correctSelection === selector) {
 
     console.log("#d" +(game.correctSelection+1) );
     
-      $("#d" +(game.correctSelection+1) ).addClass("border border-3 border-success rounded");
-      game.score++
+  //    $("#d" +(game.correctSelection+1) ).addClass("border border-3 border-success rounded");
+      $("#da" + (game.correctSelection+1)).addClass('text-success')
+      $("#da" +(game.correctSelection+1)).text('Correct');
+
+      game.score=game.score+game.multiplier;
+      game.correctAnswers++
+
+    if (game.coasterName ==="Holy Spirits") {
+      game.multiplier++;
+      game.speed++;
+    }
+
+
     } else {
-      $("#d" + (selector+1)).addClass("border border-3 border-danger rounded");
-      $("#d" + (game.correctSelection+1)).addClass("border border-3 border-success rounded");
+  //    $("#d" + (selector+1)).addClass("border border-3 border-danger rounded");
+      $("#da" + (selector+1)).addClass('text-danger')
+      $("#da" + (selector+1)).text('Incorrect')
+
+    //  $("#d" + (game.correctSelection+1)).addClass("border border-3 border-success rounded");
+    $("#da" + (game.correctSelection+1)).addClass('text-success')
+
+      $("#da" + (game.correctSelection+1)).text('Correct');
+
     }
     if (game.numQuestion >= 14) {
       endGame();
     } else{
       setTimeout(function(){newQuestion();
-        $(".border").removeClass("border border-3 border-danger border-success  border-danger rounded");
+       // $(".border").removeClass("border border-3 border-danger border-success  border-danger rounded");
+       $("#da" + (game.correctSelection+1)).removeClass('text-success')
+       $("#da" + (selector+1)).removeClass('text-danger')
+
+        $("#da1").text("");
+        $("#da2").text("");
+        $("#da3").text("");
+        $("#da4").text("");
+
         },1000)
     }
 }
 
 function newQuestion() {
-  timerVal = 120;
-  $("#progress-bar").attr("style","width: 120%;")
+  timerVal = 150;
+  $("#progress-bar").attr("style","width: 150%;")
 
   if (!timerSet) {
-  gameTimer = setInterval(function(){ progressBar() }, 10);
+  gameTimer = setInterval(function(){ progressBar() }, 200);
   timerSet = true;
 }
 
@@ -177,8 +211,12 @@ function endGame(params) {
   $("#questionSelection").hide();
   $("#scoreCard").show();
 
-}
+  $("#userScore").text(game.score);
+  $("#userCorrect").text(game.correctAnswers);
+  $("#userIncorrect").text(15-game.correctAnswers);
 
+
+}
 
 $("#mtoggle").on("mouseup", function (event) {
   game.musicToggle = !game.musicToggle
@@ -240,14 +278,15 @@ $("#d4").on("click", function (event) {
 
 
 $("#newgame").on("click", function (event) {
-   game = {
+  let game = {
     score: 0,
     correctAnswers: 0,
     correctSelection: 0,
     wins: 0,
     numQuestion: 0,
     orderQuestion: [],
-    coaster: {},
+    multiplier: 0 ,
+    speed: 0,
     musicToggle: false,
     timePerQuestion: 30,
     playbackRate: 1
