@@ -34,11 +34,11 @@ const answers = [["Zymurgy", "Zorology", "Zoophagy", "Zumology"],
 ];
 
 const coaster = {
-  name: ["Glass Pinecone", "Old Driftwood", "80s Guinness", "Holy Spirits"],
-  type: ["'Herb'", "Trash", "Stale Stout", "Deity"],
-  traits: ["3x Points, Fragile 🍺(incorrect answer breaks your coaster)", "2x Points, 2x Speed", "0.5x Points, 0.5x Speed", "Scores⬆ and Speed⬆ on correct answers"],
-  multiplier: [3,2,0.5,1],
-  speed:[1,2,0.5,1]       
+  name: ["Holy Spirits", "80s Guinness" ,"Glass Pinecone", "Old Driftwood"],
+  type: ["Deity", "Stale Stout" ,"'Herb'", "Trash"],
+  traits: ["Scores⬆ and Speed⬆ on correct answers", "0.5x Points, 0.5x Speed", "3x Points, Fragile 🍺(incorrect answer breaks your coaster)", "2x Points, 2x Speed" ],
+  multiplier: [1,0.5,3,2],
+  speed:[1,0.5,1,2]       
 }
 
 let game = {
@@ -80,10 +80,10 @@ function newGame(selector) {
 
   game.orderQuestion = order
   game.numQuestion = 0;
-  game.multiplier = coaster.speed[selector];
-  game.speed = coaster.speed[selector];
-  game.coasterName = coaster.name[0];
-  game.coasterType = coaster.type[0];
+  game.multiplier = coaster.speed[selector-1];
+  game.speed = coaster.speed[selector-1];
+  game.coasterName = coaster.name[selector-1];
+  game.coasterType = coaster.type[selector-1];
 
   game.musicToggle ? seashanty2.play() : seashanty2.pause();
 
@@ -129,12 +129,15 @@ timerSet = false;
 
       $("#da" + (game.correctSelection+1)).text('Correct');
 
+      if (game.coasterName === "Glass Pinecone") {
+        console.log("pinecone");
+        
+          endGame();
+       }
+
     }
 
-if (!(game.correctSelection === selector)  && game.coasterName ==="Glass Pinecone") {
-  endGame();
-
-}
+// 
 
     if (game.numQuestion >= 14 ) {
       endGame();
@@ -224,18 +227,18 @@ $("#mtoggle").on("mouseup", function (event) {
 
 //On hover update
 $("#b1").on("mouseenter", function (event) {
-  updateCoasterDisplay(3);
+  updateCoasterDisplay(0);
 })
 $("#b2").on("mouseenter", function (event) {
-  updateCoasterDisplay(2);
+  updateCoasterDisplay(1);
 })
 
 $("#b3").on("mouseenter", function (event) {
-  updateCoasterDisplay(0);
+  updateCoasterDisplay(2);
 })
 
 $("#b4").on("mouseenter", function (event) {
-  updateCoasterDisplay(1)
+  updateCoasterDisplay(3)
 })
 
 //On click coaster
