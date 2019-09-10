@@ -31,19 +31,15 @@ const answers = [["Zymurgy", "Zorology", "Zoophagy", "Zumology"],
 ["Kronenbourg 1664", "Curim Gold", "Badger Export Ale", "Chimay Blue"],
 ["Brazil", "England", "Spain", "Ireland"],
 ["Babylonian", "Chinese", "Greeks", "Mayans"]
-
 ];
 
 const coaster = {
-  name: ["Glass Pinecone", "Discarded Prototype", "The Pretzel", "Holy Spirits"],
-  type: ["'Herb'", "Trash", "Sourdough", "Deity"],
-  traits: ["3x Points, Fragile 🍺", "2x Points, 2x Speed", "0.5x Points, 0.5x Speed", "Scores⬆ and Speed⬆ on correct answers"],
+  name: ["Glass Pinecone", "Old Driftwood", "80s Guinness", "Holy Spirits"],
+  type: ["'Herb'", "Trash", "Stale Stout", "Deity"],
+  traits: ["3x Points, Fragile 🍺(incorrect answer breaks your coaster)", "2x Points, 2x Speed", "0.5x Points, 0.5x Speed", "Scores⬆ and Speed⬆ on correct answers"],
   multiplier: [3,2,0.5,1],
-  speed:[1,2,0.5,1]
-           
+  speed:[1,2,0.5,1]       
 }
-
-
 
 let game = {
   score: 0,
@@ -57,21 +53,19 @@ let game = {
   coasterName:"",
   coasterType:"",
   coasterTraits:"",
-
   musicToggle: false,
   timePerQuestion: 30,
-  playbackRate: 1
+  playbackRate: 1,
+  
 }
 
 var timerSet = false;
 var gameTimer;
 var seashanty2 = document.getElementById("myAudio");
 var timerVal = 120;
-//$("#coasterSelection").hide();
 
 $("#questionSelection").hide();
 $("#scoreCard").hide();
-
 
 function newGame(selector) {
   
@@ -131,12 +125,18 @@ timerSet = false;
       $("#da" + (selector+1)).text('Incorrect')
 
     //  $("#d" + (game.correctSelection+1)).addClass("border border-3 border-success rounded");
-    $("#da" + (game.correctSelection+1)).addClass('text-success')
+      $("#da" + (game.correctSelection+1)).addClass('text-success')
 
       $("#da" + (game.correctSelection+1)).text('Correct');
 
     }
-    if (game.numQuestion >= 14) {
+
+if (!(game.correctSelection === selector)  && game.coasterName ==="Glass Pinecone") {
+  endGame();
+
+}
+
+    if (game.numQuestion >= 14 ) {
       endGame();
     } else{
       setTimeout(function(){newQuestion();
@@ -154,13 +154,7 @@ timerSet = false;
 }
 
 function newQuestion() {
-  timerVal = 150;
-  $("#progress-bar").attr("style","width: 150%;")
 
-  if (!timerSet) {
-  gameTimer = setInterval(function(){ progressBar() }, 200);
-  timerSet = true;
-}
 
   var ansOrder = shuffle(Array.from(Array(4).keys()));
 
@@ -175,6 +169,13 @@ function newQuestion() {
 
   $("#question").text(question[game.orderQuestion[game.numQuestion++]]);
 
+  timerVal = 100;
+  $("#progress-bar").attr("style","width: 100%;")
+
+  if (!timerSet) {
+  gameTimer = setInterval(function(){ progressBar() }, 200/game.speed);
+  timerSet = true;
+}
 
   if (game.numQuestion >= 14) {
     endGame();
@@ -200,7 +201,6 @@ function updateCoasterDisplay(selector) {
   $("#coasterName").text(coaster.name[selector]);
   $("#coasterType").text(coaster.type[selector]);
   $("#coasterTrait").text(coaster.traits[selector]);
-
 }
 
 function endGame(params) {
@@ -210,18 +210,15 @@ function endGame(params) {
   $("#coasterSelection").hide();
   $("#questionSelection").hide();
   $("#scoreCard").show();
-
   $("#userScore").text(game.score);
   $("#userCorrect").text(game.correctAnswers);
   $("#userIncorrect").text(15-game.correctAnswers);
-
 
 }
 
 $("#mtoggle").on("mouseup", function (event) {
   game.musicToggle = !game.musicToggle
   game.musicToggle ? seashanty2.play() : seashanty2.pause();
-
 })
 
 
@@ -257,7 +254,6 @@ $("#b3").on("click", function (event) {
 $("#b4").on("click", function (event) {
   newGame(4)
 })
-
 
 //On click answer
 $("#d1").on("click", function (event) {
