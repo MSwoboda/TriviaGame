@@ -9,4 +9,7 @@ This trivia game is a timed, multiple choice quiz.
 
 1) Press Music button for maximum immersion. 
 2) Select magical coaster. Beware each positive trait comes with a negative one.
-3) 
+3) Questions will be displayed sequentially. The default time to answer a question is 20 seconds. This can change with different traits.
+4) After all questions are completed your score and correct/incorrect answers will be displayed.
+5) To play again press the 'New Game' button
+
